@@ -6,9 +6,12 @@ import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -33,11 +36,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
     @Override
     public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View view = mInflater.inflate(R.layout.list_element,null);
+        View view = mInflater.from(parent.getContext()).inflate(R.layout.list_element,parent,false);
         return new ListAdapter.ViewHolder(view);
     }
     @Override
     public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int position){
+        holder.cv.setAnimation(AnimationUtils.loadAnimation(context,R.anim.fade_transition));
         holder.bindData(mData.get(position));
     }
     public void setItems(List<ListElement> items){
@@ -46,12 +50,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView iconImage;
         TextView name, city, status;
+        CardView cv;
         ViewHolder(View itemView){
             super(itemView);
             iconImage=itemView.findViewById(R.id.iconImageView);
             name = itemView.findViewById(R.id.nameTextView);
             city = itemView.findViewById(R.id.cityTextView);
             status=itemView.findViewById(R.id.statusTextView);
+            cv=itemView.findViewById(R.id.cv);
         }
         void bindData(final ListElement item){
             iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);

@@ -25,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
         listElementList.add(new ListElement("#03a9f4","Alejandra","ChiHuahua","Cancelado"));
         listElementList.add(new ListElement("#f44336","Jessica","Durando","Inactivo"));
         listElementList.add(new ListElement("#009688","Armando","Yucatán","Inactivo"));
+        listElementList.add(new ListElement("#009688","Armando","Yucatán","Inactivo"));
+        listElementList.add(new ListElement("#009688","Armando","Yucatán","Inactivo"));
+        listElementList.add(new ListElement("#009688","Armando","Yucatán","Inactivo"));
+        listElementList.add(new ListElement("#009688","Armando","Yucatán","Inactivo"));
+        listElementList.add(new ListElement("#009688","Armando","Yucatán","Inactivo"));
+        listElementList.add(new ListElement("#009688","Armando","Yucatán","Inactivo"));
 
         ListAdapter listAdapter = new ListAdapter(listElementList, this, new ListAdapter.OnItemClickListener() {
             @Override
