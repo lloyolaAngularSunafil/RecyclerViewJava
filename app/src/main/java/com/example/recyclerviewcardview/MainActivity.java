@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -25,11 +26,21 @@ public class MainActivity extends AppCompatActivity {
         listElementList.add(new ListElement("#f44336","Jessica","Durando","Inactivo"));
         listElementList.add(new ListElement("#009688","Armando","Yucatán","Inactivo"));
 
-        ListAdapter listAdapter = new ListAdapter(listElementList,this);
+        ListAdapter listAdapter = new ListAdapter(listElementList, this, new ListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(ListElement item) {
+                moveToDescription(item);
+            }
+        });
         RecyclerView recyclerView = findViewById(R.id.listRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(listAdapter);
 
+    }
+    public void moveToDescription(ListElement item){
+        Intent intent=new Intent(this,DescriptionActivity.class);
+        intent.putExtra("ListElement",item);
+        startActivity(intent);
     }
 }
